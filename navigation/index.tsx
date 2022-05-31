@@ -30,6 +30,7 @@ import LinkingConfiguration from './LinkingConfiguration'
 import { Text, View } from '../components/Themed'
 import { Feather, Fontisto } from '@expo/vector-icons'
 import CallsScreen from '../screens/CallsScreen'
+import CameraScreen from '../screens/CameraScreen'
 
 export default function Navigation({
     colorScheme,
@@ -113,7 +114,7 @@ function MyTabs() {
         >
             <Tab.Screen
                 name="Camera"
-                component={ChatScreen}
+                component={CameraScreen}
                 options={{
                     tabBarLabel: ({ color }) => (
                         <Fontisto name="camera" size={15} color={color} />
@@ -122,12 +123,12 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Chat"
-                component={StatusScreen}
+                component={ChatScreen}
                 options={{ tabBarLabel: 'Chat' }}
             />
             <Tab.Screen
                 name="Status"
-                component={ChatScreen}
+                component={StatusScreen}
                 options={{ tabBarLabel: 'Status' }}
             />
             <Tab.Screen
