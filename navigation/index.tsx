@@ -62,6 +62,7 @@ function RootNavigator() {
                 name="WhatsApp"
                 component={MyTabs}
                 options={{
+                    headerTintColor: '#FFFFFF',
                     headerShadowVisible: false,
                     headerRight: () => (
                         <>
