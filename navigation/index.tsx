@@ -31,6 +31,7 @@ import { Text, View } from '../components/Themed'
 import { Feather, Fontisto } from '@expo/vector-icons'
 import CallsScreen from '../screens/CallsScreen'
 import CameraScreen from '../screens/CameraScreen'
+import ChatRoomScreen from '../screens/ChatRoomScreen'
 
 export default function Navigation({
     colorScheme,
@@ -84,6 +85,11 @@ function RootNavigator() {
                         </>
                     ),
                 }}
+            />
+            <Stack.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={{ title: 'Chat Room' }}
             />
             <Stack.Screen
                 name="NotFound"
