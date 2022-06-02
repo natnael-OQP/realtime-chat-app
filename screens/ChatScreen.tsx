@@ -1,8 +1,8 @@
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet, View as RnView } from 'react-native'
 import ChatRooms from '../assets/data/ChatRooms'
 import ChatListItem from '../components/ChatListItem'
 
-import { Text, View } from '../components/Themed'
+import { View } from '../components/Themed'
 import { RootTabScreenProps } from '../types'
 
 export default function ChatScreen({ navigation }: RootTabScreenProps<'Chat'>) {
@@ -14,6 +14,7 @@ export default function ChatScreen({ navigation }: RootTabScreenProps<'Chat'>) {
                 renderItem={({ item }) => <ChatListItem chatRoom={item} />}
                 showsVerticalScrollIndicator={false}
             />
+            <RnView style={styles.button}></RnView>
         </View>
     )
 }
@@ -31,5 +32,14 @@ const styles = StyleSheet.create({
         marginVertical: 30,
         height: 1,
         width: '80%',
+    },
+    button: {
+        position: 'absolute',
+        bottom: 25,
+        right: 25,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        backgroundColor: '#1a8',
     },
 })
