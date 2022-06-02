@@ -18,6 +18,7 @@ declare global {
 
 export type RootStackParamList = {
     WhatsApp: NavigatorScreenParams<RootTabParamList> | undefined
+    ChatRoom: undefined
     Modal: undefined
     NotFound: undefined
 }
@@ -44,12 +45,14 @@ export interface UserProps {
     name: string
 }
 
+export interface Message {
+    id: string
+    content: string
+    createdAt: string
+}
+
 export interface ChatRoomProps {
     id: string
     users: [UserProps]
-    lastMessage: {
-        id: string
-        content: string
-        createdAt: string
-    }
+    lastMessage: Message
 }
