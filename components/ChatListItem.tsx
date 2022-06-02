@@ -4,6 +4,8 @@ import { Text, View } from './Themed'
 import { ChatRoomProps, UserProps } from '../types'
 import useColorScheme from '../hooks/useColorScheme'
 import Avatar from './Avatar'
+import moment from 'moment'
+import { useNavigation } from '@react-navigation/native'
 
 interface Props {
     chatRoom: ChatRoomProps
@@ -12,25 +14,32 @@ interface Props {
 const ChatListItem = ({ chatRoom: { users, lastMessage } }: Props) => {
     const { content, createdAt } = lastMessage
     const theme = useColorScheme()
+    const navigation = useNavigation()
+
+    const onPress = () => {
+        navigation.navigate('ChatRoom')
+    }
 
     return (
-        <TouchableOpacity activeOpacity={0.65}>
+        <TouchableOpacity activeOpacity={0.65} onPress={onPress}>
             <View style={styles.container}>
-                <Avatar users={users} width={60} />
+                <Avatar users={users} width={65} />
                 <View style={styles.userNameContainer}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Text style={styles.name}>{users[1].name}</Text>
                         <Text
                             style={{
-                                marginLeft: 10,
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: 'gray',
+                                marginLeft: 'auto',
                             }}
                         >
-                            {createdAt}
+                            {moment(createdAt).calendar()}
                         </Text>
                     </View>
-                    <Text style={{ color: 'gray' }}>{content}</Text>
+                    <Text style={{ color: 'gray' }} numberOfLines={1}>
+                        {content}
+                    </Text>
                     <View
                         style={[
                             styles.separator,
@@ -52,7 +61,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
+        padding: 11,
     },
     userNameContainer: {
         marginLeft: 10,
@@ -60,6 +69,8 @@ const styles = StyleSheet.create({
     },
     name: {
         marginBottom: 5,
+        fontSize: 16,
+        fontWeight: '600',
     },
     separator: {
         width: '95%',
