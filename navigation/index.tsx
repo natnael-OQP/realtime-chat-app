@@ -86,11 +86,13 @@ function RootNavigator() {
                     ),
                 }}
             />
-            <Stack.Screen
-                name="ChatRoom"
-                component={ChatRoomScreen}
-                options={{ title: 'Chat Room' }}
-            />
+            <Stack.Group screenOptions={{ presentation: 'card' }}>
+                <Stack.Screen
+                    name="ChatRoom"
+                    component={ChatRoomScreen}
+                    options={{ title: 'Chat Room' }}
+                />
+            </Stack.Group>
             <Stack.Screen
                 name="NotFound"
                 component={NotFoundScreen}
