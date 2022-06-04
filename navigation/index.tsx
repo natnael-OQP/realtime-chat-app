@@ -3,7 +3,14 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { EvilIcons, FontAwesome } from '@expo/vector-icons'
+import {
+    AntDesign,
+    EvilIcons,
+    FontAwesome,
+    FontAwesome5,
+    Ionicons,
+    MaterialCommunityIcons,
+} from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {
     NavigationContainer,
@@ -32,6 +39,7 @@ import { Feather, Fontisto } from '@expo/vector-icons'
 import CallsScreen from '../screens/CallsScreen'
 import CameraScreen from '../screens/CameraScreen'
 import ChatRoomScreen from '../screens/ChatRoomScreen'
+import Avatar from '../components/Avatar'
 
 export default function Navigation({
     colorScheme,
@@ -90,7 +98,56 @@ function RootNavigator() {
                 <Stack.Screen
                     name="ChatRoom"
                     component={ChatRoomScreen}
-                    options={{ title: 'Chat Room' }}
+                    options={({ route, navigation }) => ({
+                        title: route.params.name,
+                        headerTitleStyle: {
+                            fontSize: 14,
+                        },
+                        headerLeft: () => (
+                            <>
+                                <AntDesign
+                                    name="arrowleft"
+                                    size={24}
+                                    color="white"
+                                    style={{
+                                        marginRight: 10,
+                                    }}
+                                    onPress={() => navigation.goBack()}
+                                />
+                                <View
+                                    style={{
+                                        marginLeft: 10,
+                                        marginRight: 10,
+                                        backgroundColor: 'transparent',
+                                    }}
+                                >
+                                    <Avatar
+                                        width={45}
+                                        image={route.params.image}
+                                    />
+                                </View>
+                            </>
+                        ),
+                        headerRight: () => (
+                            <>
+                                <Ionicons
+                                    name="ios-call"
+                                    size={24}
+                                    color="white"
+                                />
+                                <FontAwesome5
+                                    name="video"
+                                    size={24}
+                                    color="white"
+                                />
+                                <MaterialCommunityIcons
+                                    name="dots-vertical"
+                                    size={24}
+                                    color="white"
+                                />
+                            </>
+                        ),
+                    })}
                 />
             </Stack.Group>
             <Stack.Screen
