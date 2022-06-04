@@ -3,19 +3,40 @@ import React from 'react'
 import { UserProps } from '../types'
 
 interface Props {
-    users: [UserProps]
+    users?: [UserProps]
+    image?: string
     width: number
 }
 
-const Avatar = ({ users, width }: Props) => {
+const Avatar = ({ users, width, image }: Props) => {
     return (
-        <Image
-            style={[
-                styles.image,
-                { width: width, height: width, borderRadius: width / 2 },
-            ]}
-            source={{ uri: users[1].imageUri }}
-        />
+        <>
+            {image ? (
+                <Image
+                    style={[
+                        styles.image,
+                        {
+                            width: width,
+                            height: width,
+                            borderRadius: width / 2,
+                        },
+                    ]}
+                    source={{ uri: image }}
+                />
+            ) : (
+                <Image
+                    style={[
+                        styles.image,
+                        {
+                            width: width,
+                            height: width,
+                            borderRadius: width / 2,
+                        },
+                    ]}
+                    source={{ uri: users[1].imageUri }}
+                />
+            )}
+        </>
     )
 }
 
