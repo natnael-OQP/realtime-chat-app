@@ -1,4 +1,8 @@
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import {
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+} from 'react-native'
 import React from 'react'
 import { Text, View } from './Themed'
 import { ChatRoomProps, UserProps } from '../types'
@@ -17,11 +21,15 @@ const ChatListItem = ({ chatRoom: { users, lastMessage } }: Props) => {
     const navigation = useNavigation()
 
     const onPress = () => {
-        navigation.navigate('ChatRoom')
+        navigation.navigate('ChatRoom', {
+            id: users[1].id,
+            name: users[1].name,
+            image: users[1].imageUri,
+        })
     }
 
     return (
-        <TouchableOpacity activeOpacity={0.65} onPress={onPress}>
+        <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
                 <Avatar users={users} width={65} />
                 <View style={styles.userNameContainer}>
@@ -51,7 +59,7 @@ const ChatListItem = ({ chatRoom: { users, lastMessage } }: Props) => {
                     />
                 </View>
             </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     )
 }
 
